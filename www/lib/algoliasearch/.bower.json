@@ -1,0 +1,37 @@
+{
+  "name": "algoliasearch",
+  "version": "2.8.0",
+  "homepage": "https://github.com/algolia/algoliasearch-client-js",
+  "authors": [
+    "Algolia Team <support@algolia.com>"
+  ],
+  "description": "Algolia Search is a search API that provides hosted full-text, numerical and faceted search.",
+  "main": "dist/algoliasearch.js",
+  "keywords": [
+    "js",
+    "algolia",
+    "search",
+    "api",
+    "rest"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "example",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "vendor"
+  ],
+  "_release": "2.8.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "2.8.0",
+    "commit": "2964c80adeccbbd38dddfba419ae2e5bb6bfc790"
+  },
+  "_source": "git://github.com/algolia/algoliasearch-client-js.git",
+  "_target": "~2.8.0",
+  "_originalSource": "algoliasearch",
+  "_direct": true
+}

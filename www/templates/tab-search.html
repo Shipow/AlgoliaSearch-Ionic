@@ -1,0 +1,13 @@
+<ion-view title="Realtime Search">
+  <ion-content class="padding">
+    <div class="item-input-inset">
+      <ion-search class="search-wrapper-light" placeholder="Search a story" min-length="0" model="results" source="getSearch(query)"></ion-search>
+    </div>
+    <div class="list">
+      <div ng-repeat="hit in results.hits" class="item">
+        <!-- <img ng-src="{{hit.images.teaser}}"/> -->
+        <div ng-bind-html="hit._highlightResult.title.value"></div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
