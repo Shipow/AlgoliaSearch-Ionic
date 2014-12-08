@@ -1,0 +1,46 @@
+{
+  "name": "algoliasearch",
+  "description": "Algolia Search API Client",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/algolia/algoliasearch-client-js.git"
+  },
+  "keywords": [
+    "algolia",
+    "search",
+    "search api",
+    "instant search",
+    "realtime",
+    "autocomplete"
+  ],
+  "homepage": "https://github.com/algolia/algoliasearch-client-js",
+  "bugs": "https://github.com/algolia/algoliasearch-client-js/issues",
+  "author": {
+    "name": "Algolia SAS",
+    "url": "https://www.algolia.com"
+  },
+  "contributors": [
+    {
+      "name": "Algolia Team <support@algolia.com>",
+      "url": "http://www.algolia.com"
+    }
+  ],
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-concat": "^0.5.0",
+    "grunt-contrib-connect": "^0.8.0",
+    "grunt-contrib-jasmine": "~0.8.0",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-uglify": "^0.6.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-exec": "^0.4.6",
+    "grunt-parallel": "^0.3.1",
+    "grunt-sed": "^0.1.1",
+    "semver": "^4.0.0"
+  },
+  "scripts": {
+    "test": "grunt test --verbose"
+  },
+  "version": "2.8.0"
+}
