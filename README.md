@@ -1,5 +1,5 @@
 # Build Realtime Search with Algolia + Ionic
-If you are creating a mobile app you will most likely need a search feature to let your user navigate through your data. We will relay on Algolia service to make it blazing fast. It's fun and simple.
+If you are creating a mobile app you will most likely need a search feature to let your user navigate through your data. We will relay on Algolia's service to make it blazing fast. It's fun and simple.
 
 This demo use the Hacker News index with ~ 1,500,000 records.
 
