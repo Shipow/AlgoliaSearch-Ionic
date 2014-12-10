@@ -1,16 +1,16 @@
-angular.module('starter.controllers', ['algoliasearch'])
+angular.module('starter.controllers', [])
 
-.controller('SearchCtrl', function($scope, algolia) {
+.controller('SearchCtrl', function($scope) {
 
   // Algolia settings
   // Hacker news credentials for demo purpose
-  var algoliaConfig = {
+  var algolia = {
     appID: 'UJ5WYC0L7X',
     apiKey: '8ece23f8eb07cd25d40262a1764599b1',
     index: 'Item_production'
   }
-  var client = algolia.Client(algoliaConfig.appID, algoliaConfig.apiKey);
-  index = client.initIndex(algoliaConfig.index);
+  var client =  new AlgoliaSearch(algolia.appID, algolia.apiKey);
+  var index = client.initIndex(algolia.index);
 
   // Search
   $scope.search = {};
@@ -36,7 +36,7 @@ angular.module('starter.controllers', ['algoliasearch'])
     // attributesToSnippet
     // getRankingInfo
     // numericFilters
-    tagFilters: 'story',
+    tagFilters: 'story'
     // distinct
     // facets
     // facetFilters
@@ -52,12 +52,12 @@ angular.module('starter.controllers', ['algoliasearch'])
 
   //Search scope
   $scope.getSearch = function(query) {
-    index.search(query, undefined, $scope.search.params).then(
-      function(results) {
+    index.search(query, function(err,results){
+      $scope.$apply(function(){
         $scope.results = results;
-      }
-    );
-  }
+      });
+    }, $scope.search.params);
+  };
 })
 
 .directive('ionSearch', function() {
