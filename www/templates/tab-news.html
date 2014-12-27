@@ -1,7 +1,5 @@
-<ion-view cache-view="false" title="News">
+<ion-view cache-view="false" title="{{story.title}}">
   <ion-content>
-    <h1>{{news.title}}</h1>
-    <p>{{news}}</p>
-    <iframe ng-src="{{news.url}}"></iframe>
+    <iframe ng-src="{{trustSrc(story.url)}}"></iframe>
   </ion-content>
 </ion-view>

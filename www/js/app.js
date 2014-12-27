@@ -50,7 +50,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       url: '/news',
       views: {
         'tab-search': {
-          templateUrl: 'templates/tab-news.html'
+          templateUrl: 'templates/tab-news.html',
+          controller: 'ViewCtrl'
         }
       }
     })

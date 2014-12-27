@@ -1,6 +1,20 @@
-angular.module('starter.controllers', ['algoliasearch'])
+angular.module('starter.controllers', ['algoliasearch','ngSanitize'])
 
-.controller('SearchCtrl', function($scope, algolia) {
+.factory('story', function() {
+    var story = [];
+    var storyService = {};
+
+    storyService.update = function(hit) {
+        story = hit;
+    };
+    storyService.get = function() {
+        return story;
+    };
+
+    return storyService;
+})
+
+.controller('SearchCtrl', function($scope, algolia, story) {
 
   // Algolia settings
   // Hacker news credentials for demo purpose
@@ -59,11 +73,8 @@ angular.module('starter.controllers', ['algoliasearch'])
     );
   };
 
-  $scope.news = 'hello';
-
-  $scope.openNews = function(url) {
-    console.log(url);
-    $scope.news = url;
+  $scope.openNews = function(hit) {
+    story.update(hit);
     window.open('#/tab/news', '_self');
   };
 
@@ -71,6 +82,13 @@ angular.module('starter.controllers', ['algoliasearch'])
 
 .controller('SettingsCtrl', function($scope, algolia) {
 
+})
+
+.controller('ViewCtrl', function($scope, $sce, story) {
+  $scope.story = story.get();
+  $scope.trustSrc = function(src) {
+    return $sce.trustAsResourceUrl(src);
+  }
 })
 
 .directive('ionSearch', function() {
