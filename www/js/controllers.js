@@ -57,7 +57,20 @@ angular.module('starter.controllers', ['algoliasearch'])
         $scope.results = results;
       }
     );
-  }
+  };
+
+  $scope.news = 'hello';
+
+  $scope.openNews = function(url) {
+    console.log(url);
+    $scope.news = url;
+    window.open('#/tab/news', '_self');
+  };
+
+})
+
+.controller('SettingsCtrl', function($scope, algolia) {
+
 })
 
 .directive('ionSearch', function() {
