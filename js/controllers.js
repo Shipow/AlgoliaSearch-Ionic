@@ -94,6 +94,39 @@ angular.module('starter.controllers', ['algoliasearch'])
   }
 })
 
+.directive('collection', function() {
+  return {
+    restrict: 'E',
+    replace: true,
+    scope: {
+      collection: "="
+    },
+    template: "<ul class='replies-list'><reply ng-repeat='reply in collection' reply='reply'></reply></ul>"
+  };
+})
+
+.directive('reply', function($compile) {
+  return {
+    restrict: 'E',
+    replace: true,
+    scope: {
+      reply: "="
+    },
+    link: function (scope, element, attrs) {
+      var collectionSt = '<collection collection="reply.children"></collection>';
+      if (angular.isArray(scope.reply.children)) {
+        $compile(collectionSt)(scope, function(cloned, scope)   {
+          element.append(cloned);
+        });
+      }
+    },
+    template: '<li>' +
+                '<i class="icon ion-reply"></i> <span class="author">{{reply.author}}</span> - <small class="pull-right">{{reply.created_at_i | moment:"M/D/YYYY h:m A"}}</small>' +
+                '<div ng-bind-html="reply.text"></div>' +
+              '</li>'
+  };
+})
+
 .directive('ionSearch', function() {
   return {
     restrict: 'E',
