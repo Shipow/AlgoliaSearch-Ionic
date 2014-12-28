@@ -9,10 +9,14 @@
         <p>{{story.url}}</p>
       </li>
       <li class="item item-avatar" ng-repeat="comment in story.full.children">
-        <img ng-src="https://github.com/identicons/{{comment.author}}.png">
+        <img ng-src="https://github.com/identicons/{{comment.author}}.png" err-src="/img/no-avatar.png">
         <h2>{{comment.author}}</h2>
-        <span>{{comment.created_at_i | moment:'M/D/YYYY h:m A'}}</span>
+        <small>{{comment.created_at_i | moment:'M/D/YYYY h:m A'}}</small>
         <div ng-bind-html="comment.text"></div>
+        <br>
+        <button class="button button-small button-light icon-left ion-chatbubble-working" ng-show="comment.children.length > 0">
+          {{comment.children.length}} comments
+        </button>
       </li>
     </ul>
   </ion-content>
