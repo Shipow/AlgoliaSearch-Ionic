@@ -1,10 +1,10 @@
-angular.module('starter.controllers', ['algoliasearch','ngSanitize'])
+angular.module('starter.controllers', ['algoliasearch'])
 
 .factory('story', function() {
     var story = [];
     var storyService = {};
 
-    storyService.update = function(hit) {
+    storyService.set = function(hit) {
         story = hit;
     };
     storyService.get = function() {
@@ -74,7 +74,7 @@ angular.module('starter.controllers', ['algoliasearch','ngSanitize'])
   };
 
   $scope.openNews = function(hit) {
-    story.update(hit);
+    story.set(hit);
     window.open('#/tab/news', '_self');
   };
 
@@ -84,11 +84,16 @@ angular.module('starter.controllers', ['algoliasearch','ngSanitize'])
 
 })
 
-.controller('ViewCtrl', function($scope, $sce, story) {
+.controller('ViewCtrl', function($scope, $http, $ionicLoading, story) {
   $scope.story = story.get();
-  $scope.trustSrc = function(src) {
-    return $sce.trustAsResourceUrl(src);
-  }
+  $ionicLoading.show({
+    template: 'Loading...'
+  });
+  $http.get('http://hn.algolia.com/api/v1/items/' + $scope.story.objectID).
+  success(function(data) {
+    $scope.story.full = data ;
+    $ionicLoading.hide();
+  });
 })
 
 .directive('ionSearch', function() {
