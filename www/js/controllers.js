@@ -1,19 +1,5 @@
 angular.module('starter.controllers', ['algoliasearch'])
 
-.factory('story', function() {
-    var story = [];
-    var storyService = {};
-
-    storyService.set = function(hit) {
-        story = hit;
-    };
-    storyService.get = function() {
-        return story;
-    };
-
-    return storyService;
-})
-
 .controller('SearchCtrl', function($scope, algolia, story) {
 
   // Algolia settings

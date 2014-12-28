@@ -5,8 +5,17 @@
     </div>
     <div class="list">
       <div ng-repeat="hit in results.hits" class="item" ng-click="openNews(hit)">
-        <img ng-src="https://drcs9k8uelb9s.cloudfront.net/{{hit.objectID}}.png" width="60" />
-        <div ng-bind-html="hit._highlightResult.title.value"></div>
+      <div class="row">
+        <div class="col col-20">
+          <img ng-src="https://drcs9k8uelb9s.cloudfront.net/{{hit.objectID}}.png" width="60" />
+        </div>
+        <div class="col col-80">
+          <h2 ng-bind-html="hit._highlightResult.title.value"></h2>
+          <span>{{hit.created_at_i | moment:'M/D/YYYY h:m A'}}</span>
+          <br>
+          <span>{{hit.points}} points | {{hit.num_comments}} comments</span>
+        </div>
+      </div>
       </div>
     </div>
   </ion-content>
