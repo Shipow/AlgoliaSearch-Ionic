@@ -7,8 +7,9 @@
       <div ng-repeat="hit in results.hits" class="item item-thumbnail-left" ng-click="openNews(hit)">
         <img ng-src="https://drcs9k8uelb9s.cloudfront.net/{{hit.objectID}}.png" />
         <h2 ng-bind-html="hit._highlightResult.title.value"></h2>
-        <p>{{hit.url}}</p>
-        <small>{{hit.points}} points by {{hit.author}} {{hit.created_at_i | moment:'M/D/YYYY h:m A'}} • {{hit.num_comments}} comments</small>
+        <a class="hit-link clearfix" href="#">{{hit.url}}</a>
+        <small>{{hit.points}} points by <span class="author">{{hit.author}}</span></small>
+        <small class="clearfix">{{hit.created_at_i | moment:'M/D/YYYY h:m A'}} • {{hit.num_comments}} comments</small>
       </div>
     </div>
   </ion-content>

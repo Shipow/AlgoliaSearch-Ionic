@@ -7816,4 +7816,23 @@ $ios-transition-box-shadow-end: -200px 0px 200px rgba(0,0,0,0.15), -5px 0px 5px 
   transition: none !important; }
 
 em {
-  background-color: #eee; }
+  background-color: red; }
+
+.hit-link {
+  font-size: 0.8em;
+  text-decoration: none;
+  color: #576A98; }
+
+.replies-list li {
+  padding-left: 10px;
+  margin-top: 0.5em; }
+
+.author {
+  color: #804679;
+  display: inline-block;
+  margin-bottom: 0.5em; }
+
+.item-avatar {
+  padding-left: 50px; }
+  .item-avatar img {
+    width: 25px !important; }

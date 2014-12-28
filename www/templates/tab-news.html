@@ -5,32 +5,29 @@
       <img ng-src="https://drcs9k8uelb9s.cloudfront.net/{{story.objectID}}.png">
         <h2>{{story.title}}</h2>
         <p>{{story.url}}</p>
-        <small>{{story.points}} points by {{story.author}} {{story.created_at_i | moment:'M/D/YYYY h:m A'}} </small>
+        <p>by <span class="author">{{story.author}}</span> {{story.created_at_i | moment:'M/D/YYYY h:m A'}}</p>
     </div>
     <div class="item tabs tabs-secondary tabs-icon-left">
       <a class="tab-item" href="#">
         <i class="icon ion-thumbsup"></i>
-        Upvote
+        {{story.points}} Points
       </a>
       <a class="tab-item" href="#">
         <i class="icon ion-chatbubble-working"></i>
-        Comment
+        {{story.num_comments}} Comments
       </a>
       <a class="tab-item" ng-href="{{story.url}}" target="_blank">
-        <i class="icon ion-share"></i>
-        Open
+        <i class="icon ion-link"></i>
+        Open in browser
       </a>
     </div>
   </div>
     <ul class="list">
       <li class="item item-avatar item-text-wrap" ng-repeat="comment in story.full.children" ng-show="comment.author">
         <img ng-src="https://github.com/identicons/{{comment.author}}.png" err-src="../img/no-avatar.png">
-        <h3>{{comment.author}}</h3>
+        <span class="author">{{comment.author}}</span>
         <small>{{comment.created_at_i | moment:'M/D/YYYY h:m A'}}</small>
         <div ng-bind-html="comment.text"></div>
-        <button class="button button-small button-light icon-left ion-chatbubble-working" ng-show="comment.children.length > 0">
-          {{comment.children.length}} comments...
-        </button>
         <collection collection="comment.children"></collection>
       </li>
     </ul>

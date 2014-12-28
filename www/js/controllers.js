@@ -94,7 +94,6 @@ angular.module('starter.controllers', ['algoliasearch'])
   }
 })
 
-
 .directive('collection', function() {
   return {
     restrict: 'E',
@@ -102,7 +101,7 @@ angular.module('starter.controllers', ['algoliasearch'])
     scope: {
       collection: "="
     },
-    template: "<ul><reply ng-repeat='reply in collection' reply='reply'></reply></ul>"
+    template: "<ul class='replies-list'><reply ng-repeat='reply in collection' reply='reply'></reply></ul>"
   };
 })
 
@@ -122,9 +121,8 @@ angular.module('starter.controllers', ['algoliasearch'])
       }
     },
     template: '<li>' +
-                '{{reply.author}} - <small>{{reply.created_at_i | moment:"M/D/YYYY h:m A"}}</small>' +
+                '<i class="icon ion-reply"></i> <span class="author">{{reply.author}}</span> - <small class="pull-right">{{reply.created_at_i | moment:"M/D/YYYY h:m A"}}</small>' +
                 '<div ng-bind-html="reply.text"></div>' +
-                '{{reply.children.length}} replies' +
               '</li>'
   };
 })
