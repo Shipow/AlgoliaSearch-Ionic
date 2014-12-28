@@ -1,22 +1,37 @@
 <ion-view cache-view="false" title="{{story.title}}">
   <ion-content>
-    <ul class="list">
-      <li class="item item-thumbnail-left">
-        <img ng-src="https://drcs9k8uelb9s.cloudfront.net/{{story.objectID}}.png" width="100">
-        <h2>{{story.author}}</h2>
-        <p>{{story.created_at_i | moment:'M/D/YYYY h:m A'}}</p>
-        <p>{{story.points}} points</p>
+  <div class="card">
+    <div class="item item-thumbnail-left item-text-wrap">
+      <img ng-src="https://drcs9k8uelb9s.cloudfront.net/{{story.objectID}}.png">
+        <h2>{{story.title}}</h2>
         <p>{{story.url}}</p>
-      </li>
-      <li class="item item-avatar" ng-repeat="comment in story.full.children">
+        <small>{{story.points}} points by {{story.author}} {{story.created_at_i | moment:'M/D/YYYY h:m A'}} </small>
+    </div>
+    <div class="item tabs tabs-secondary tabs-icon-left">
+      <a class="tab-item" href="#">
+        <i class="icon ion-thumbsup"></i>
+        Upvote
+      </a>
+      <a class="tab-item" href="#">
+        <i class="icon ion-chatbubble-working"></i>
+        Comment
+      </a>
+      <a class="tab-item" ng-href="{{story.url}}" target="_blank">
+        <i class="icon ion-share"></i>
+        Open
+      </a>
+    </div>
+  </div>
+    <ul class="list">
+      <li class="item item-avatar item-text-wrap" ng-repeat="comment in story.full.children" ng-show="comment.author">
         <img ng-src="https://github.com/identicons/{{comment.author}}.png" err-src="../img/no-avatar.png">
-        <h2>{{comment.author}}</h2>
+        <h3>{{comment.author}}</h3>
         <small>{{comment.created_at_i | moment:'M/D/YYYY h:m A'}}</small>
         <div ng-bind-html="comment.text"></div>
-        <br>
         <button class="button button-small button-light icon-left ion-chatbubble-working" ng-show="comment.children.length > 0">
-          {{comment.children.length}} comments
+          {{comment.children.length}} comments...
         </button>
+        <collection collection="comment.children"></collection>
       </li>
     </ul>
   </ion-content>
