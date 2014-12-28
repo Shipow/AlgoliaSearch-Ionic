@@ -1,12 +1,15 @@
-<ion-view title="Realtime Search">
-  <ion-content class="padding">
+<ion-view title="Search Hacker News">
+  <ion-content>
     <div class="item-input-inset">
       <ion-search class="search-wrapper-light" placeholder="Search a story" min-length="0" model="results" source="getSearch(query)"></ion-search>
     </div>
     <div class="list">
-      <div ng-repeat="hit in results.hits" class="item">
-        <!-- <img ng-src="{{hit.images.teaser}}"/> -->
-        <div ng-bind-html="hit._highlightResult.title.value"></div>
+      <div ng-repeat="hit in results.hits" class="item item-thumbnail-left" ng-click="openNews(hit)">
+        <img ng-src="https://drcs9k8uelb9s.cloudfront.net/{{hit.objectID}}.png" width="60" />
+        <h2 ng-bind-html="hit._highlightResult.title.value"></h2>
+        <small>{{hit.created_at_i | moment:'M/D/YYYY h:m A'}}</small>
+        <br>
+        <span>{{hit.points}} points | {{hit.num_comments}} comments</span>
       </div>
     </div>
   </ion-content>

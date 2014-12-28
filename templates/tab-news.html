@@ -1,0 +1,23 @@
+<ion-view cache-view="false" title="{{story.title}}">
+  <ion-content>
+    <ul class="list">
+      <li class="item item-thumbnail-left">
+        <img ng-src="https://drcs9k8uelb9s.cloudfront.net/{{story.objectID}}.png" width="100">
+        <h2>{{story.author}}</h2>
+        <p>{{story.created_at_i | moment:'M/D/YYYY h:m A'}}</p>
+        <p>{{story.points}} points</p>
+        <p>{{story.url}}</p>
+      </li>
+      <li class="item item-avatar" ng-repeat="comment in story.full.children">
+        <img ng-src="https://github.com/identicons/{{comment.author}}.png" err-src="/img/no-avatar.png">
+        <h2>{{comment.author}}</h2>
+        <small>{{comment.created_at_i | moment:'M/D/YYYY h:m A'}}</small>
+        <div ng-bind-html="comment.text"></div>
+        <br>
+        <button class="button button-small button-light icon-left ion-chatbubble-working" ng-show="comment.children.length > 0">
+          {{comment.children.length}} comments
+        </button>
+      </li>
+    </ul>
+  </ion-content>
+</ion-view>

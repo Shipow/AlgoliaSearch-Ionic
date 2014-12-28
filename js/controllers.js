@@ -1,16 +1,16 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['algoliasearch'])
 
-.controller('SearchCtrl', function($scope) {
+.controller('SearchCtrl', function($scope, algolia, story) {
 
   // Algolia settings
   // Hacker news credentials for demo purpose
-  var algolia = {
+  var algoliaConfig = {
     appID: 'UJ5WYC0L7X',
     apiKey: '8ece23f8eb07cd25d40262a1764599b1',
     index: 'Item_production'
   }
-  var client =  new AlgoliaSearch(algolia.appID, algolia.apiKey);
-  var index = client.initIndex(algolia.index);
+  var client = algolia.Client(algoliaConfig.appID, algoliaConfig.apiKey);
+  index = client.initIndex(algoliaConfig.index);
 
   // Search
   $scope.search = {};
@@ -36,7 +36,7 @@ angular.module('starter.controllers', [])
     // attributesToSnippet
     // getRankingInfo
     // numericFilters
-    tagFilters: 'story'
+    tagFilters: 'story',
     // distinct
     // facets
     // facetFilters
@@ -52,12 +52,46 @@ angular.module('starter.controllers', [])
 
   //Search scope
   $scope.getSearch = function(query) {
-    index.search(query, function(err,results){
-      $scope.$apply(function(){
+    index.search(query, undefined, $scope.search.params).then(
+      function(results) {
         $scope.results = results;
-      });
-    }, $scope.search.params);
+      }
+    );
   };
+
+  $scope.openNews = function(hit) {
+    story.set(hit);
+    window.open('#/tab/news', '_self');
+  };
+
+})
+
+.controller('SettingsCtrl', function($scope, algolia) {
+
+})
+
+.controller('ViewCtrl', function($scope, $http, $ionicLoading, story) {
+  $scope.story = story.get();
+  $ionicLoading.show({
+    template: 'Loading...'
+  });
+  $http.get('http://hn.algolia.com/api/v1/items/' + $scope.story.objectID).
+  success(function(data) {
+    $scope.story.full = data ;
+    $ionicLoading.hide();
+  });
+})
+
+.directive('errSrc', function() {
+  return {
+    link: function(scope, element, attrs) {
+      element.bind('error', function() {
+        if (attrs.src != attrs.errSrc) {
+          attrs.$set('src', attrs.errSrc);
+        }
+      });
+    }
+  }
 })
 
 .directive('ionSearch', function() {
