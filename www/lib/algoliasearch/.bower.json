@@ -1,6 +1,5 @@
 {
   "name": "algoliasearch",
-  "version": "2.8.0",
   "homepage": "https://github.com/algolia/algoliasearch-client-js",
   "authors": [
     "Algolia Team <support@algolia.com>"
@@ -24,14 +23,13 @@
     "tests",
     "vendor"
   ],
-  "_release": "2.8.0",
+  "_release": "bbfa416223",
   "_resolution": {
-    "type": "version",
-    "tag": "2.8.0",
-    "commit": "2964c80adeccbbd38dddfba419ae2e5bb6bfc790"
+    "type": "branch",
+    "branch": "feature/promise",
+    "commit": "bbfa4162235f95e9aedcddcfde40de11cf9b97ea"
   },
   "_source": "git://github.com/algolia/algoliasearch-client-js.git",
-  "_target": "~2.8.0",
-  "_originalSource": "algoliasearch",
-  "_direct": true
+  "_target": "feature/promise",
+  "_originalSource": "algoliasearch"
 }
