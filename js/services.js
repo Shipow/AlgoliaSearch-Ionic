@@ -12,11 +12,21 @@ angular.module('starter.services', [])
     return storyService;
 })
 
-.factory('settings', function(search) {
+.factory('settings', function() {
+    //default settings
+    var defaultSettings = {
+        dateRange: 'last24h',
+        type: 'story',
+        sort: 'byPopularity'
+    };
     var settings = {};
     var settingsService = {};
+
+    settingsService.init = function() {
+        settings = defaultSettings;
+        return settings;
+    };
     settingsService.set = function(settings) {
-        search.setParams(settings);
         settings = settings;
     };
     settingsService.get = function() {
