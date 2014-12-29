@@ -7816,7 +7816,7 @@ $ios-transition-box-shadow-end: -200px 0px 200px rgba(0,0,0,0.15), -5px 0px 5px 
   transition: none !important; }
 
 em {
-  background-color: red; }
+  background-color: #FF9D08; }
 
 .hit-link {
   font-size: 0.8em;
@@ -7827,12 +7827,20 @@ em {
   padding-left: 10px;
   margin-top: 0.5em; }
 
+.reply-container {
+  padding-top: 0.5em; }
+
 .author {
   color: #804679;
-  display: inline-block;
-  margin-bottom: 0.5em; }
+  display: inline-block; }
 
 .item-avatar {
   padding-left: 50px; }
   .item-avatar img {
     width: 25px !important; }
+
+.item-thumbnail-left {
+  padding-left: 75px; }
+  .item-thumbnail-left img {
+    top: 20px !important;
+    width: 50px !important; }

@@ -27,7 +27,7 @@
         <img ng-src="https://github.com/identicons/{{comment.author}}.png" err-src="../img/no-avatar.png">
         <span class="author">{{comment.author}}</span>
         <small>{{comment.created_at_i | moment:'M/D/YYYY h:m A'}}</small>
-        <div ng-bind-html="comment.text"></div>
+        <div class="reply-container" ng-bind-html="comment.text"></div>
         <collection collection="comment.children"></collection>
       </li>
     </ul>

@@ -22,7 +22,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 @import "www/lib/ionic/scss/ionic";
 
 em{
-  background-color: red;
+  background-color: #FF9D08;
 }
 
 .hit-link{
@@ -38,15 +38,26 @@ em{
   }
 }
 
+.reply-container{
+  padding-top: .5em;
+}
+
 .author{
   color: #804679;
   display: inline-block;
-  margin-bottom: .5em;
 }
 
 .item-avatar {
   padding-left: 50px;
   img {
     width: 25px !important;
+  }
+}
+
+.item-thumbnail-left{
+  padding-left: 75px;
+  img{
+    top: 20px !important;
+    width: 50px !important;
   }
 }
