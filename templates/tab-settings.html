@@ -4,15 +4,61 @@
       <div class="item item-divider">
         Basic settings
       </div>
+      <label class="item item-input item-select">
+        <div class="input-label">
+          News Type
+        </div>
+        <select ng-model="settings.type">
+          <option value="all">All</option>
+          <option value="story">Story</option>
+          <option value="comment">Comment</option>
+          <option value="poll">Poll</option>
+        </select>
+      </label>
+      <label class="item item-input item-select">
+        <div class="input-label">
+          Date Range
+        </div>
+        <select ng-model="settings.dateRange">
+          <option value="all">All time</option>
+          <option value="last24h">Last 24h</option>
+          <option value="pastWeek">Past week</option>
+          <option value="pastMonth">Past month</option>
+        </select>
+      </label>
+      <label class="item item-input item-select">
+        <div class="input-label">
+          Sort
+        </div>
+        <select ng-model="settings.sort">
+          <option value="byPopularity">By popularity</option>
+          <option value="byDate">By date</option>
+        </select>
+      </label>
+      <div class="item item-divider">
+        Advanced Search
+      </div>
       <a class="item item-icon-right" href="#">
-        Hits per page
+        By Author
         <i class="icon ion-chevron-right"></i>
       </a>
-      <div class="item range range-positive">
+      <a class="item item-icon-right" href="#">
+        By Points
+        <i class="icon ion-chevron-right"></i>
+      </a>
+      <a class="item item-icon-right" href="#">
+        By Date
+        <i class="icon ion-chevron-right"></i>
+      </a>
+      <a class="item item-icon-right" href="#">
+        By Story Id
+        <i class="icon ion-chevron-right"></i>
+      </a>
+<!--       <div class="item range range-positive">
         <i class="icon ion-ios7-sunny-outline"></i>
         <input type="range" name="volume" min="0" max="100" value="33">
         <i class="icon ion-ios7-sunny"></i>
-      </div>
+      </div> -->
     </div>
   </ion-content>
 </ion-view>

@@ -1,6 +1,6 @@
 angular.module('starter.controllers', ['algoliasearch'])
 
-.controller('SearchCtrl', function($scope, algolia, story) {
+.controller('SearchCtrl', function($scope, algolia, story, search, settings) {
 
   // Algolia settings
   // Hacker news credentials for demo purpose
@@ -10,48 +10,23 @@ angular.module('starter.controllers', ['algoliasearch'])
     index: 'Item_production'
   }
   var client = algolia.Client(algoliaConfig.appID, algoliaConfig.apiKey);
-  index = client.initIndex(algoliaConfig.index);
+  var index = client.initIndex(algoliaConfig.index);
+
+  //default settings
+  var settings = {
+      dateRange: 'last24h',
+      type: 'story',
+      sort: 'byDate'
+  };
+  search.setParams(settings);
 
   // Search
-  $scope.search = {};
-  $scope.search.params = {
-    // queryType
-    // typoTolerance
-    // minWordSizefor1Typo
-    // minWordSizefor2Typos
-    // allowTyposOnNumericTokens
-    // ignorePlurals
-    // restrictSearchableAttributes
-    // advancedSyntax
-    // analytics
-    // analyticsTags
-    // synonyms
-    // replaceSynonymsInHighlight
-    // optionalWords
-    // removeWordsIfNoResults
-    // page
-    // hitsPerPage
-    // attributesToRetrieve
-    // attributesToHighlight
-    // attributesToSnippet
-    // getRankingInfo
-    // numericFilters
-    tagFilters: 'story',
-    // distinct
-    // facets
-    // facetFilters
-    // maxValuesPerFacet
-    // aroundLatLng
-    // aroundLatLngViaIP
-    // aroundRadius
-    // aroundPrecision
-    // insideBoundingBox
-  };
-
+  $scope.search = search.get();
   $scope.results = [];
 
   //Search scope
   $scope.getSearch = function(query) {
+    search.setQuery(query);
     index.search(query, undefined, $scope.search.params).then(
       function(results) {
         $scope.results = results;
@@ -66,8 +41,11 @@ angular.module('starter.controllers', ['algoliasearch'])
 
 })
 
-.controller('SettingsCtrl', function($scope, algolia) {
-
+.controller('SettingsCtrl', function($scope, settings) {
+  $scope.settings = settings.get();
+  $scope.$watchCollection('settings', function(newSettings){
+    settings.set(newSettings);
+  });
 })
 
 .controller('ViewCtrl', function($scope, $http, $ionicLoading, story) {
@@ -121,13 +99,13 @@ angular.module('starter.controllers', ['algoliasearch'])
       }
     },
     template: '<li>' +
-                '<i class="icon ion-reply"></i> <span class="author">{{reply.author}}</span> - <small class="pull-right">{{reply.created_at_i | moment:"M/D/YYYY h:m A"}}</small>' +
+                '<i class="icon ion-reply"></i> <span class="author">{{reply.author}}</span> - <small>{{reply.created_at_i | moment:"M/D/YYYY h:m A"}}</small>' +
                 '<div ng-bind-html="reply.text"></div>' +
               '</li>'
   };
 })
 
-.directive('ionSearch', function() {
+.directive('ionSearch', function(search) {
   return {
     restrict: 'E',
     replace: true,
@@ -138,7 +116,7 @@ angular.module('starter.controllers', ['algoliasearch'])
     link: function(scope, element, attrs) {
       attrs.minLength = attrs.minLength || 0;
       scope.placeholder = attrs.placeholder || '';
-      scope.search = {query: ''};
+      scope.search = search.get();
 
       if (attrs.class)
         element.addClass(attrs.class);
