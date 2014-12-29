@@ -12,15 +12,9 @@ angular.module('starter.controllers', ['algoliasearch'])
   var client = algolia.Client(algoliaConfig.appID, algoliaConfig.apiKey);
   var index = client.initIndex(algoliaConfig.index);
 
-  //default settings
-  var settings = {
-      dateRange: 'last24h',
-      type: 'story',
-      sort: 'byDate'
-  };
-  search.setParams(settings);
 
   // Search
+  search.setParams(settings.init());
   $scope.search = search.get();
   $scope.results = [];
 
